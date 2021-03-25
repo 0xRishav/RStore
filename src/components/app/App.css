@@ -52,7 +52,7 @@
 
 /* Hide the browser's default radio button */
 .radio-btn-container input {
-position: absolute;
+  position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
