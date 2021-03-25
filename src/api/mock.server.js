@@ -29,7 +29,8 @@ export default function setupMockServer() {
           price: faker.commerce.price(),
           description: faker.commerce.productDescription(),
           isInCart: false,
-          isInWishlist: false
+          isInWishlist: false,
+          quantity: 1
         });
       });
     }
