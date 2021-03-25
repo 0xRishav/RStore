@@ -1,14 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import { App } from "./components";
+import reportWebVitals from "./reportWebVitals";
+import setupMockServer from "./api/mock.server";
+import { ProductsContextProvider } from "./contexts/productsContext";
+
+
+setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ProductsContextProvider>
+      <App />
+    </ProductsContextProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
