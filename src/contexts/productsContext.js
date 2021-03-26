@@ -67,6 +67,22 @@ export const ProductsContextProvider = ({ children }) => {
               : ele
           ),
         };
+
+      case "DECREASE_QUANTITY":
+        const index = state.products.findIndex(
+          (ele, index) => ele.id === action.payload
+        );
+        if (state.products[index].quantity < 2) {
+          return state;
+        }
+        return {
+          ...state,
+          products: state.products.map((ele) =>
+            ele.id === action.payload
+              ? { ...ele, quantity: ele.quantity - 1 }
+              : ele
+          ),
+        };
       default:
         return state;
     }
