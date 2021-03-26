@@ -1,4 +1,3 @@
-
 import { createServer, Model, RestSerializer } from "miragejs";
 import faker from "faker";
 
@@ -7,11 +6,11 @@ faker.seed(123);
 export default function setupMockServer() {
   createServer({
     serializers: {
-      application: RestSerializer
+      application: RestSerializer,
     },
 
     models: {
-      product: Model
+      product: Model,
     },
 
     routes() {
@@ -30,9 +29,11 @@ export default function setupMockServer() {
           description: faker.commerce.productDescription(),
           isInCart: false,
           isInWishlist: false,
-          quantity: 1
+          fastDelivery: faker.random.boolean(),
+          freeShipping: faker.random.boolean(),
+          quantity: 1,
         });
       });
-    }
+    },
   });
 }
