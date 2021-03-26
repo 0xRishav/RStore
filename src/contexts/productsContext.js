@@ -58,6 +58,15 @@ export const ProductsContextProvider = ({ children }) => {
           ),
         };
 
+      case "INCREASE_QUANTITY":
+        return {
+          ...state,
+          products: state.products.map((ele) =>
+            ele.id === action.payload
+              ? { ...ele, quantity: ele.quantity + 1 }
+              : ele
+          ),
+        };
       default:
         return state;
     }
