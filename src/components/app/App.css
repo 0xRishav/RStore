@@ -1,6 +1,8 @@
 .App {
   font-family: "Roboto", sans-serif;
   text-align: center;
+  width: 90%;
+  margin: auto;
 }
 
 .products-wrapper {
@@ -11,11 +13,19 @@
   grid-gap: 16px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .products-wrapper {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .products-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 
 @media (max-width: 425px) {
   .products-wrapper {
