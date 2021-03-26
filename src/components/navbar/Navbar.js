@@ -4,7 +4,7 @@ import { BsBag } from "react-icons/bs";
 import { ProductsContext } from "../../contexts/productsContext";
 
 function Navbar() {
-  const { dispatch } = useContext(ProductsContext).products;
+  const { products, dispatch } = useContext(ProductsContext).products;
   const [isScrolled, setIsScrolled] = useState(false);
 
   const transitionNavbar = () => {
@@ -53,11 +53,16 @@ function Navbar() {
               Wishlist
             </li>
             <li>
-              <BsBag
-                onClick={() => {
-                  dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Cart" });
-                }}
-              />
+              <div className="navbar__cartIconWrapper">
+                <BsBag
+                  onClick={() => {
+                    dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Cart" });
+                  }}
+                />
+                <span className="navbar__productCount">
+                  {products.filter((ele) => ele.isInCart === true).length}
+                </span>
+              </div>
             </li>
           </ul>
         </div>
