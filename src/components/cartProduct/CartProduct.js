@@ -11,7 +11,10 @@ function CartProduct({
   isInWishlist,
   dispatch,
   quantity,
+  getTotalPrice,
 }) {
+  const TotalPrice = getTotalPrice();
+
   return (
     <div className="cartProduct">
       <div className="hr-div"></div>
@@ -34,6 +37,12 @@ function CartProduct({
           </button>
         </div>
         <div className="cartProduct__subTotal">Rs. {price * quantity}</div>
+        <div
+          className="CartProduct__removeProuctLink"
+          onClick={() => dispatch({ type: "TOGGLE_ITEM_IN_CART", payload: id })}
+        >
+          Remove
+        </div>
       </div>
     </div>
   );
