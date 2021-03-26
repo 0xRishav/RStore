@@ -14,6 +14,7 @@ function CartProduct({
 }) {
   return (
     <div className="cartProduct">
+      <div className="hr-div"></div>
       <div className="cartProduct__wrapper">
         <img className="cartProduct__image" src={image} alt={`${name}image`} />
         <div className="cartProduct__name">{name}</div>
@@ -27,9 +28,7 @@ function CartProduct({
           {quantity}
           <button
             className="Product__button--secondary"
-            onClick={() =>
-              dispatch({ type: "DECREASE_QUANTITY", payload: id })
-            }
+            onClick={() => dispatch({ type: "DECREASE_QUANTITY", payload: id })}
           >
             -
           </button>

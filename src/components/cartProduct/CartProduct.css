@@ -17,6 +17,7 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
+  margin: 16px 0;
 }
 
 .cartProduct__subTotal {
@@ -37,4 +38,10 @@
 
 .cartProduct__subTotal {
   width: 20%;
+}
+
+.hr-div {
+  border: 1px solid #c6c6c8;
+  width: 95%;
+  margin: auto;
 }
