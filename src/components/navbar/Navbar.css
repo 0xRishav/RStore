@@ -2,11 +2,13 @@
   text-align: center;
   width: 100%;
   background-color: #333333;
-  height: 10vh;
+  height: 5vh;
   color: #d7d7d7;
   transition: all 0.2s ease-in;
 }
-
+/* span {
+  color: white;
+} */
 .navbar__wrapper--scrolled {
   position: fixed;
   top: 0;
@@ -41,4 +43,11 @@ ul > li {
 
 ul > li:hover {
   color: #007aff;
+}
+
+.navbar__productCount {
+  position: relative;
+  bottom: 0;
+  right: 0;
+  font-size: 10px;
 }
