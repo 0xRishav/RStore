@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Loader, Navbar, Product } from "../index";
+import { Loader, Navbar, Product, CartProduct } from "../index";
 import { ProductsContext } from "../../contexts/productsContext";
 import "./App.css";
 
@@ -61,16 +61,15 @@ function App() {
               <Product {...product} dispatch={dispatch} />
             ))}
 
-          {productsToShow === "Cart" &&
-            products
-              .filter((product) => product.isInCart === true)
-              .map((product) => <Product {...product} dispatch={dispatch} />)}
-
           {productsToShow === "Wishlist" &&
             products
               .filter((product) => product.isInWishlist === true)
               .map((product) => <Product {...product} dispatch={dispatch} />)}
         </div>
+        {productsToShow === "Cart" &&
+          products
+            .filter((product) => product.isInCart === true)
+            .map((product) => <CartProduct {...product} dispatch={dispatch} />)}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ function Product({
   isInCart,
   isInWishlist,
   dispatch,
+  quantity,
 }) {
   return (
     <div className="Product">
