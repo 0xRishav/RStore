@@ -1,5 +1,6 @@
 import React from "react";
 import "./Product.css";
+import { AiFillTag } from "react-icons/ai";
 
 function Product({
   id,
@@ -11,12 +12,27 @@ function Product({
   isInWishlist,
   dispatch,
   quantity,
+  fastDelivery,
+  freeShipping,
 }) {
   return (
     <div className="Product">
       <img className="Product__image" src={image} alt="productImage" />
       <h3 className="Product__productName">{name}</h3>
       <p className="Product__price">Rs. {price}</p>
+      <div className="Product__offerWrapper">
+        {fastDelivery && (
+          <span className="Product__offer">
+            <AiFillTag />
+            Fast Delivery
+          </span>
+        )}
+        {freeShipping && (
+          <span className="Product__offer">
+            <AiFillTag /> Free Shipping
+          </span>
+        )}
+      </div>
       <div className="Product__buttonWrapper">
         <button
           onClick={() => dispatch({ type: "TOGGLE_ITEM_IN_CART", payload: id })}

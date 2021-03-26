@@ -55,6 +55,21 @@
   color: white;
 }
 
+.Product__offerWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-self: flex-start;
+  align-items: center;
+}
+.Product__offer {
+  margin: 1px 0;
+  padding: 4px 8px;
+  background: #c6c6c8;
+  display: block;
+  border-radius: 6px;
+  font-size: 0.7rem;
+}
+
 @media (max-width: 474px) {
   .Product__image {
     width: 160px;
