@@ -15,6 +15,20 @@ function App() {
 
   const productButtons = ["All Products", "Cart", "Wishlist"];
 
+  const getTotalPriceReducer = (acc, val) => {
+    return acc + val.price * val.quantity;
+  };
+
+  const getTotalPrice = () => {
+    const totalPrice = products
+      .filter((product) => product.isInCart === true)
+      .reduce(getTotalPriceReducer, 0);
+
+    return totalPrice;
+  };
+
+  const totalPrice = getTotalPrice();
+
   return (
     <div className="App__wrapper">
       <Navbar />
@@ -69,7 +83,17 @@ function App() {
         {productsToShow === "Cart" &&
           products
             .filter((product) => product.isInCart === true)
-            .map((product) => <CartProduct {...product} dispatch={dispatch} />)}
+            .map((product) => (
+              <CartProduct
+                {...product}
+                dispatch={dispatch}
+                getTotalPrice={getTotalPrice}
+              />
+            ))}
+        {productsToShow === "Cart" && <div className="hr-div"></div>}
+        {productsToShow === "Cart" && (
+          <div className="App__totalCartPrice">Total: Rs. {totalPrice}</div>
+        )}
       </div>
     </div>
   );
