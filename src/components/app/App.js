@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Loader, Navbar, Product, CartProduct } from "../index";
+import { Loader, Navbar, Product, CartProduct, Checkbox } from "../index";
 import { ProductsContext } from "../../contexts/productsContext";
 import "./App.css";
 
@@ -67,6 +67,10 @@ function App() {
             <span class="checkmark"></span>
             High To Low
           </label>
+        </div>
+        <div className="App__filterCheckboxWrapper">
+          <h5>Filter By: </h5>
+          <div className="App__filterCheckboxContainer"></div>
         </div>
         {isLoading && <Loader />}
         <div className="products-wrapper">
