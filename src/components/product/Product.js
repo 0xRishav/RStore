@@ -1,6 +1,7 @@
 import React from "react";
 import "./Product.css";
 import { AiFillTag } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 function Product({
   id,
@@ -17,7 +18,9 @@ function Product({
 }) {
   return (
     <div className="Product">
-      <img className="Product__image" src={image} alt="productImage" />
+      <Link to={`/product/${id}`}>
+        <img className="Product__image" src={image} alt="productImage" />
+      </Link>
       <h3 className="Product__productName">{name}</h3>
       <p className="Product__price">Rs. {price}</p>
       <div className="Product__offerWrapper">
