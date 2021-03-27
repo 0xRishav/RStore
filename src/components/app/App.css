@@ -51,7 +51,7 @@
   position: relative;
   padding-left: 35px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -72,8 +72,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
   background-color: #eee;
   border-radius: 50%;
 }
@@ -102,11 +102,11 @@
 
 /* Style the indicator (dot/circle) */
 .radio-btn-container .checkmark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+  top: 7px;
+  left: 7.2px;
+  width: 6.4px;
+  height: 6.4px;
+  border-radius: 64px;
   background: white;
 }
 
@@ -114,4 +114,10 @@
   font-size: 2rem;
   font-weight: 700;
   margin: 32px 0;
+}
+
+@media (max-width: 856px) {
+  .radio-btn-wrapper {
+    width: 100%;
+  }
 }
