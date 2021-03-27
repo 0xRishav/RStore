@@ -33,7 +33,9 @@ function Navbar() {
       }
     >
       <div className="navbar">
-        <div className="Navbar__logo">RStore</div>
+        <Link to="/" className={isScrolled === false ? "Navbar__logo" : "Navbar__logo Navbar__logo--scrolled"}>
+          <div>RStore</div>
+        </Link>
         <div className="navbar__linkWrapper">
           <ul>
             <Link
