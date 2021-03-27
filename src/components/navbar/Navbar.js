@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Navbar.css";
 import { BsBag } from "react-icons/bs";
 import { ProductsContext } from "../../contexts/productsContext";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const { products, dispatch } = useContext(ProductsContext).products;
@@ -35,35 +36,63 @@ function Navbar() {
         <div className="Navbar__logo">RStore</div>
         <div className="navbar__linkWrapper">
           <ul>
-            <li
-              onClick={() =>
-                dispatch({
-                  type: "PRODUCTS_TO_SHOW",
-                  payload: "All Products",
-                })
+            <Link
+              to="/"
+              className={
+                isScrolled === false
+                  ? "navbar__Link"
+                  : "navbar__Link navbar__Link--scrolled"
               }
             >
-              All Products
-            </li>
-            <li
-              onClick={() =>
-                dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Wishlist" })
+              <li
+                onClick={() =>
+                  dispatch({
+                    type: "PRODUCTS_TO_SHOW",
+                    payload: "All Products",
+                  })
+                }
+              >
+                All Products
+              </li>
+            </Link>
+
+            <Link
+              to="/"
+              className={
+                isScrolled === false
+                  ? "navbar__Link"
+                  : "navbar__Link navbar__Link--scrolled"
               }
             >
-              Wishlist
-            </li>
-            <li>
-              <div className="navbar__cartIconWrapper">
-                <BsBag
-                  onClick={() => {
-                    dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Cart" });
-                  }}
-                />
-                <span className="navbar__productCount">
-                  {products.filter((ele) => ele.isInCart === true).length}
-                </span>
-              </div>
-            </li>
+              <li
+                onClick={() =>
+                  dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Wishlist" })
+                }
+              >
+                Wishlist
+              </li>
+            </Link>
+            <Link
+              to="/"
+              className={
+                isScrolled === false
+                  ? "navbar__Link"
+                  : "navbar__Link navbar__Link--scrolled"
+              }
+            >
+              <li>
+                <div className="navbar__cartIconWrapper">
+                  <BsBag
+                    onClick={() => {
+                      dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Cart" });
+                    }}
+                  />
+                  <span className="navbar__productCount">
+                    {products.filter((ele) => ele.isInCart === true).length}
+                  </span>
+                </div>
+              </li>
+            </Link>
           </ul>
         </div>
       </div>
