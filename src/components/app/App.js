@@ -68,10 +68,6 @@ function App() {
             High To Low
           </label>
         </div>
-        <div className="App__filterCheckboxWrapper">
-          <h5>Filter By: </h5>
-          <div className="App__filterCheckboxContainer"></div>
-        </div>
         {isLoading && <Loader />}
         <div className="products-wrapper">
           {productsToShow === "All Products" &&
@@ -94,10 +90,18 @@ function App() {
                 getTotalPrice={getTotalPrice}
               />
             ))}
-        {productsToShow === "Cart" && <div className="hr-div"></div>}
-        {productsToShow === "Cart" && (
-          <div className="App__totalCartPrice">Total: Rs. {totalPrice}</div>
-        )}
+        {productsToShow === "Cart" &&
+          products.filter((ele) => ele.isInCart === true).length !== 0 && (
+            <div className="hr-div"></div>
+          )}
+        {productsToShow === "Cart" &&
+          products.filter((ele) => ele.isInCart === true).length !== 0 && (
+            <div className="App__totalCartPrice">Total: Rs. {totalPrice}</div>
+          )}
+        {productsToShow === "Cart" &&
+          products.filter((ele) => ele.isInCart === true).length === 0 && (
+            <div className="App__totalCartPrice">Cart Is Empty</div>
+          )}
       </div>
     </div>
   );
