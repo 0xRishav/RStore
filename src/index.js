@@ -5,14 +5,29 @@ import { App } from "./components";
 import reportWebVitals from "./reportWebVitals";
 import setupMockServer from "./api/mock.server";
 import { ProductsContextProvider } from "./contexts/productsContext";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import ProductPage from "./components/product-page/ProductPage";
 
 setupMockServer();
 
 ReactDOM.render(
   <React.StrictMode>
     <ProductsContextProvider>
-      <App />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <App />
+          </Route>
+          <Route path="/product/:id" exact>
+            <ProductPage />
+          </Route>
+        </Switch>
+      </Router>
     </ProductsContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
