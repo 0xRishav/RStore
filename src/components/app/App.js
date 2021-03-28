@@ -53,6 +53,7 @@ function App() {
               .filter((product) => product.isInWishlist === true)
               .map((product) => <Product {...product} dispatch={dispatch} />)}
         </div>
+
         {productsToShow === "Cart" &&
           products
             .filter((product) => product.isInCart === true)
@@ -63,6 +64,20 @@ function App() {
                 getTotalPrice={getTotalPrice}
               />
             ))}
+        {productsToShow === "Wishlist" &&
+          products.filter((product) => product.isInWishlist === true).length ===
+            0 && (
+            <div
+              style={{
+                fontSize: "2rem",
+                fontWeight: "600",
+                textAlign: "center",
+              }}
+            >
+              wishlist is empty
+            </div>
+          )}
+
         {productsToShow === "Cart" &&
           products.filter((ele) => ele.isInCart === true).length !== 0 && (
             <div className="hr-div"></div>
