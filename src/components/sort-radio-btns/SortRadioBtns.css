@@ -1,5 +1,5 @@
 .radio-btn-wrapper {
-  margin-bottom: 32px;
+  margin-bottom: 0;
 }
 
 /* Radio btn styles */
@@ -10,7 +10,6 @@
   align-items: center;
   width: 50%;
   margin: auto;
-  margin-bottom: 32px;
 }
 
 .radio-btn-container {

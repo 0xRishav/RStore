@@ -16,6 +16,8 @@
   grid-gap: 0.5em;
   font-size: 1rem;
   color: #007aff;
+  width: 150px;
+  cursor: pointer;
 }
 
 .checkbox__control {
