@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ProductsContext } from "../../contexts/productsContext";
 import "./Checkbox.css";
 
-function Checkbox() {
+function Checkbox({ type }) {
+  const { dispatch } = useContext(ProductsContext).products;
   return (
     <label className="checkbox">
       <span className="checkbox__input">
-        <input type="checkbox" name="checkbox" />
+        <input
+          type="checkbox"
+          name="checkbox"
+          onChange={() =>
+            dispatch({
+              type:
+                type === "Free Shipping"
+                  ? "TOGGLE_SHOWFREESHIPPING"
+                  : "TOGGLE_SHOWFASTDELIVERY",
+            })
+          }
+        />
         <span className="checkbox__control">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +35,7 @@ function Checkbox() {
           </svg>
         </span>
       </span>
-      <span className="radio__label">Checkbox</span>
+      <span className="radio__label">{type}</span>
     </label>
   );
 }
