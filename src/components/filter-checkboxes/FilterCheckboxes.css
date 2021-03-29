@@ -1,0 +1,21 @@
+.filterCheckboxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+}
+.filterCheckboxes__checkboxContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+@media (max-width: 900px) {
+  .filterCheckboxes {
+    width: 100%;
+  }
+  .filterCheckboxes__checkboxContainer {
+    width: auto;
+  }
+}
