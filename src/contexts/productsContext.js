@@ -10,6 +10,8 @@ export const ProductsContextProvider = ({ children }) => {
     productsToShow: "All Products",
     isErr: false,
     sortBy: null,
+    showFastDeliveryOnly: false,
+    showFreeShippingOnly: false,
   };
 
   const ProductsReducer = (state, action) => {
@@ -24,15 +26,6 @@ export const ProductsContextProvider = ({ children }) => {
         return { ...state, productsToShow: action.payload };
 
       case "SORT_BY":
-        if (action.payload === "LOW_TO_HIGH") {
-          state.products.sort((a, b) => {
-            return a.price - b.price;
-          });
-        } else if (action.payload === "HIGH_TO_LOW") {
-          state.products.sort((a, b) => {
-            return b.price - a.price;
-          });
-        }
         return { ...state, sortBy: action.payload };
 
       case "TOGGLE_ERR":
@@ -83,6 +76,13 @@ export const ProductsContextProvider = ({ children }) => {
               : ele
           ),
         };
+
+      case "TOGGLE_SHOWFASTDELIVERY":
+        return { ...state, showFastDeliveryOnly: !state.showFastDeliveryOnly };
+
+      case "TOGGLE_SHOWFREESHIPPING":
+        return { ...state, showFreeShippingOnly: !state.showFreeShippingOnly };
+
       default:
         return state;
     }
