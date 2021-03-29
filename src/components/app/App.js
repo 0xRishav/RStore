@@ -6,6 +6,7 @@ import {
   CartProduct,
   Checkbox,
   SortRadioBtns,
+  FilterCheckboxes,
 } from "../index";
 import { ProductsContext } from "../../contexts/productsContext";
 import "./App.css";
@@ -74,11 +75,9 @@ function App() {
     <div className="App__wrapper">
       <Navbar />
       <div className="App">
-        {productsToShow === "All Products" && <SortRadioBtns />}
-        <div className="App__filterCheckboxContainer">
-          <h5>Filter By Offer:</h5>
-          <Checkbox type="Free Shipping" />
-          <Checkbox type="Fast Delivery" />
+        <div className="App__checkboxRadioBtnWrapper">
+          {productsToShow === "All Products" && <SortRadioBtns />}
+          {productsToShow === "All Products" && <FilterCheckboxes />}
         </div>
 
         {isLoading && <Loader />}

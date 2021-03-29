@@ -22,9 +22,16 @@
   margin: auto;
 }
 
+.App__checkboxRadioBtnWrapper {
+  display: flex;
+}
+
 @media (max-width: 900px) {
   .products-wrapper {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+  .App__checkboxRadioBtnWrapper {
+    flex-direction: column;
   }
 }
 
