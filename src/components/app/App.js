@@ -17,6 +17,8 @@ function App() {
     productsToShow,
     isErr,
     sortBy,
+    showFastDeliveryOnly,
+    showFreeShippingOnly,
     dispatch,
   } = useContext(ProductsContext).products;
 
@@ -34,17 +36,55 @@ function App() {
     return totalPrice;
   };
 
+  const getSortedDate = (productList, sortBy) => {
+    if (sortBy && sortBy === "LOW_TO_HIGH") {
+      return productList.sort((a, b) => {
+        return a.price - b.price;
+      });
+    } else if (sortBy && sortBy === "HIGH_TO_LOW") {
+      return productList.sort((a, b) => {
+        return b.price - a.price;
+      });
+    }
+    return productList;
+  };
+
+  const getFilteredData = (
+    productList,
+    { showFastDeliveryOnly, showFreeShippingOnly }
+  ) => {
+    return productList
+      .filter((product) => {
+        return showFastDeliveryOnly ? product.fastDelivery : true;
+      })
+      .filter((product2) => {
+        return showFreeShippingOnly ? product2.freeShipping : true;
+      });
+  };
+
   const totalPrice = getTotalPrice();
+
+  const sortedData = getSortedDate(products, sortBy);
+  const filteredData = getFilteredData(sortedData, {
+    showFastDeliveryOnly,
+    showFreeShippingOnly,
+  });
 
   return (
     <div className="App__wrapper">
       <Navbar />
       <div className="App">
         {productsToShow === "All Products" && <SortRadioBtns />}
+        <div className="App__filterCheckboxContainer">
+          <h5>Filter By Offer:</h5>
+          <Checkbox type="Free Shipping" />
+          <Checkbox type="Fast Delivery" />
+        </div>
+
         {isLoading && <Loader />}
         <div className="products-wrapper">
           {productsToShow === "All Products" &&
-            products.map((product) => (
+            filteredData.map((product) => (
               <Product {...product} dispatch={dispatch} />
             ))}
 
