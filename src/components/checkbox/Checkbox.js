@@ -3,7 +3,9 @@ import { ProductsContext } from "../../contexts/productsContext";
 import "./Checkbox.css";
 
 function Checkbox({ type }) {
-  const { dispatch } = useContext(ProductsContext).products;
+  const { showFreeShippingOnly, showFastDeliveryOnly, dispatch } = useContext(
+    ProductsContext
+  ).products;
   return (
     <label className="checkbox">
       <span className="checkbox__input">
@@ -17,6 +19,11 @@ function Checkbox({ type }) {
                   ? "TOGGLE_SHOWFREESHIPPING"
                   : "TOGGLE_SHOWFASTDELIVERY",
             })
+          }
+          checked={
+            type === "Free Shipping"
+              ? showFreeShippingOnly === true
+              : showFastDeliveryOnly === true
           }
         />
         <span className="checkbox__control">
