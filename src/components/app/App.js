@@ -95,7 +95,7 @@ function App() {
   const totalPrice = getTotalPrice();
 
   let newTotal = selectedCoupon
-    ? Math.round(getTotalPrice() * selectedCoupon.discount)
+    ? totalPrice - Math.round(getTotalPrice() * selectedCoupon.discount)
     : false;
 
   const sortedData = getSortedDate(products, sortBy);
