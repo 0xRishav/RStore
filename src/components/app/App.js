@@ -7,6 +7,7 @@ import {
   Checkbox,
   SortRadioBtns,
   FilterCheckboxes,
+  CouponModal,
 } from "../index";
 import { ProductsContext } from "../../contexts/productsContext";
 import "./App.css";
@@ -23,7 +24,35 @@ function App() {
     dispatch,
   } = useContext(ProductsContext).products;
 
-  const productButtons = ["All Products", "Cart", "Wishlist"];
+  const [selectedCoupon, setSelectedCoupon] = useState(false);
+
+  const couponCodes = [
+    { name: "OFF30", discount: 0.3 },
+    { name: "OFF50", discount: 0.5 },
+    { name: "OFF70", discount: 0.7 },
+  ];
+
+  const handleCouponClick = (index) => {
+    setSelectedCoupon(couponCodes[index]);
+    setIsOpen(false);
+  };
+
+  // MODAL
+  const [modalIsOpen, setIsOpen] = useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    console.log("modal opened");
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  // MODAL
 
   const getTotalPriceReducer = (acc, val) => {
     return acc + val.price * val.quantity;
@@ -64,6 +93,10 @@ function App() {
   };
 
   const totalPrice = getTotalPrice();
+
+  let newTotal = selectedCoupon
+    ? Math.round(getTotalPrice() * selectedCoupon.discount)
+    : false;
 
   const sortedData = getSortedDate(products, sortBy);
   const filteredData = getFilteredData(sortedData, {
@@ -123,7 +156,34 @@ function App() {
           )}
         {productsToShow === "Cart" &&
           products.filter((ele) => ele.isInCart === true).length !== 0 && (
-            <div className="App__totalCartPrice">Total: Rs. {totalPrice}</div>
+            <div className="App__totalApplyOfferWrapper">
+              <div className="App__totalCartPrice">
+                Total: Rs.{" "}
+                {newTotal ? (
+                  <div style={{ display: "flex" }}>
+                    <div
+                      style={{ textDecoration: "line-through", opacity: "50%" }}
+                    >
+                      {totalPrice}
+                    </div>
+                    <div style={{ color: "#34C759", marginLeft: "16px" }}>
+                      {newTotal}
+                    </div>
+                  </div>
+                ) : (
+                  <div>{totalPrice}</div>
+                )}
+              </div>
+              <CouponModal
+                modalIsOpen={modalIsOpen}
+                closeModal={closeModal}
+                afterOpenModal={afterOpenModal}
+                openModal={openModal}
+                couponCodes={couponCodes}
+                handleCouponClick={handleCouponClick}
+                selectedCoupon={selectedCoupon}
+              />
+            </div>
           )}
         {productsToShow === "Cart" &&
           products.filter((ele) => ele.isInCart === true).length === 0 && (
