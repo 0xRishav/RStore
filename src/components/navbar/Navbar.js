@@ -24,6 +24,20 @@ function Navbar() {
     };
   }, []);
 
+  let cartCount = 0;
+  const cartCountReducer = (acc, val) => {
+    return acc + val.quantity;
+  };
+
+  const getCartCount = () => {
+    return products
+      .filter((ele) => ele.isInCart === true)
+      .reduce(cartCountReducer, 0);
+  };
+
+  cartCount = getCartCount();
+
+  console.log({ cartCount });
   return (
     <div
       className={
@@ -33,7 +47,14 @@ function Navbar() {
       }
     >
       <div className="navbar">
-        <Link to="/" className={isScrolled === false ? "Navbar__logo" : "Navbar__logo Navbar__logo--scrolled"}>
+        <Link
+          to="/"
+          className={
+            isScrolled === false
+              ? "Navbar__logo"
+              : "Navbar__logo Navbar__logo--scrolled"
+          }
+        >
           <div>RStore</div>
         </Link>
         <div className="navbar__linkWrapper">
@@ -89,9 +110,7 @@ function Navbar() {
                       dispatch({ type: "PRODUCTS_TO_SHOW", payload: "Cart" });
                     }}
                   />
-                  <span className="navbar__productCount">
-                    {products.filter((ele) => ele.isInCart === true).length}
-                  </span>
+                  <span className="navbar__productCount">{cartCount}</span>
                 </div>
               </li>
             </Link>
