@@ -36,7 +36,7 @@ export const ProductsContextProvider = ({ children }) => {
           ...state,
           products: state.products.map((ele) =>
             ele.id === action.payload
-              ? { ...ele, isInCart: !ele.isInCart }
+              ? { ...ele, isInCart: !ele.isInCart, quantity: 1 }
               : ele
           ),
         };
